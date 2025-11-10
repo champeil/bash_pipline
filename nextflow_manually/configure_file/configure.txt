@@ -1,0 +1,38 @@
+########## data type
+single_end = [TRUE | FALSE]
+species = [human | mouse]
+
+########## file configuration
+nextflow_manually_dir = 
+result_dir = /home/laojp/data/wangzn_atac/samplelist
+create_dir_name = 0.raw_data 1.qc 2.trimmomatic 3.qc 4.bwa log
+samplelist_file = /home/laojp/data/wangzn_atac/samplelist
+adapter_index = /home/laojp/data/wangzn_atac/atac_index.txt
+adapter_file = /home/laojp/software/trimmomatic/Trimmomatic-0.39/adapters/TruSeq3-PE-2.fa
+    # according to https://www.biostars.org/p/129436/
+    # please read the fastqc html result [adapter content]
+
+########## reference file
+reference_fasta = 
+reference_gtf = 
+reference_bwa_human = /home/laojp/reference/human/GATK/hg38/gatk_hg38
+reference_star_human = /home/laojp/reference/human/GATK/hg38/gatk_hg38
+reference_rsem_human =
+reference_bwa_mouse = /home/laojp/reference/mouse/ensembl_GRCm38/gatk_grcm38
+reference_star_mouse = /home/laojp/reference/mouse/ensembl_GRCm38/gatk_grcm38
+reference_rsem_mouse =
+
+########## software directory 
+fastqc = /home/laojp/software/fastqc/FastQC
+multiqc = /home/laojp/software/multiqc/bin
+trimgalore = /home/laojp/software/trimmomatic/Trimmomatic-0.39/dist/jar
+fastp = 
+bwa = /home/laojp/software/bwa/bin
+star = 
+samtools = /home/laojp/software/samtools_1.9/bin
+gatk = /home/laojp/software/gatk_4.2.6.1/gatk-4.2.6.1
+rsem = 
+
+########## software_java directory
+trimmomatic = /home/laojp/software/trimmomatic/Trimmomatic-0.39/dist/jar
+

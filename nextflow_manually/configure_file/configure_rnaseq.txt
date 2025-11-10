@@ -1,0 +1,26 @@
+########## data type
+single_end = FALSE
+species = homo_sapiens
+Nproc = 5
+
+########## file configuration
+result_dir = /home/laojp/data/zhengyq
+create_dir_name = 0.raw_data 1.qc 2.fastp 3.qc 4.star 5.rsem
+samplelist_file = /home/laojp/data/zhengyq/samplelist
+treat_control_pair = 
+# treat is sample, control is false
+
+########## reference file
+reference_fasta = /home/laojp/database/human/gencode/fasta/v45/GRCh38.p14.genome.fa
+reference_gtf = /home/laojp/database/human/gencode/gtf/v45/gencode.v45.annotation.gtf
+reference_star = /home/laojp/database/human/STAR/GRCh38/gencode/v45/
+reference_rsem = /home/laojp/database/human/RSEM/GRCh38/gencode/v45/
+
+########## software directory 
+fastqc = /home/laojp/software/fastqc/FastQC
+multiqc = /home/laojp/software/multiqc/bin
+fastp = /home/laojp/software/fastp
+star = /home/laojp/software/STAR/bin
+samtools = /home/laojp/software/samtools_1.9/bin
+featurecount = /home/laojp/software/featurecount/subread/bin
+rsem = /home/laojp/software/RSEM/bin

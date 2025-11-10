@@ -1,0 +1,25 @@
+# ----------------------------------------------------------------------------
+# to discuss the analysis that some data can do
+# ----------------------------------------------------------------------------
+
+overall design
+- captured from the paper, and obtain the analysis
+- analysis [input] [output] [figure] # record the source paper
+    - [input]
+        - files sep by "\t" 
+        - configure_data refered to the configure data
+    - [output]
+        - result files
+        - R data contained all data(include figure)
+        - how to interpreted the data [the sample capture from the paper]
+            - paper-analysis-interpret
+
+
+
+
+
+
+# ----------------------------------------------------------------------------
+# data source for reference
+# ----------------------------------------------------------------------------
+

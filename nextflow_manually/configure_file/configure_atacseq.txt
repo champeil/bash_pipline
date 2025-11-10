@@ -1,0 +1,54 @@
+########## [data_type]
+single_end = TRUE
+species = human
+genome_version = GRCh38
+Nproc = 10
+
+########## [file_configuration]
+result_dir = /home/laojp/data/guogp/2024.02.26/GSE155345
+create_dir_name = 0.raw_data 1.qc 2.trimmomatic 3.qc 4.bwa 5.qc 6.macs 7.homer 8.R
+samplelist_file = /home/laojp/data/guogp/2024.02.26/GSE155345/samplelist
+adapter_file = /home/laojp/software/trimmomatic/Trimmomatic-0.39/adapters/NexteraPE-PE.fa
+# according to https://www.biostars.org/p/129436/
+# please read the fastqc html result [adapter content]
+treat_control_pair = /home/laojp/data/guogp/treat_control_pair 
+# treat_control_pair can be used as comparison of diffbind
+
+########## [reference_file]
+reference_fasta = /home/laojp/database/human/ensembl/fasta/GRCh38/ensembl_105/Homo_sapiens.GRCh38.dna.primary_assembly.fa
+reference_bwa = /home/laojp/database/human/ensembl/fasta/GRCh38/ensembl_105/bwa
+blacklist_file = /home/laojp/database/human/ENCODE/blacklist/hg38/hg38-blacklist.v2.bed
+
+########## [software_directory]
+fastqc = /home/laojp/software/fastqc/FastQC
+multiqc = /home/laojp/software/multiqc/bin
+trimmomatic = /home/laojp/software/trimmomatic/Trimmomatic-0.39/dist/jar
+bwa = /home/laojp/software/bwa/bin
+samtools = /home/laojp/software/samtools_1.9/bin
+bamqc = /home/laojp/software/bamqc/BamQC/bin
+gatk =  /home/laojp/software/gatk_4.2.6.1/gatk-4.2.6.1
+gatk_pon =  /home/laojp/software/gatk_4.1.0.0/gatk-4.1.0.0
+deeptools = /home/laojp/software/deeptools/bin
+macs = /home/laojp/software/macs/bin
+facount = /home/laojp/software/faCount
+homer = /home/laojp/software/HOMER/bin
+
+########## [atac_seq_analysis.R]
+atac_seq_analysis_work_space = /data/laojianpei/unfinished/wangzn_atac_2/8.R/
+atac_seq_analysis_result_macs = /data/laojianpei/unfinished/wangzn_atac_2/6.macs/
+atac_seq_analysis_result_dir = /data/laojianpei/unfinished/wangzn_atac_2/8.R/
+atac_seq_analysis_sample_diff = /data/laojianpei/unfinished/wangzn_atac_2/peakset_wang.csv
+atac_seq_analysis_contrast = maz,control;cbx,control
+atac_seq_analysis_contrast_col = Factor
+atac_seq_analysis_scoreCol = 5
+atac_seq_analysis_blacklist = DBA_BLACKLIST_MM10 
+atac_seq_analysis_txdb_file = TxDb.Mmusculus.UCSC.mm10.knownGene
+atac_seq_analysis_txde_style = NCBI
+atac_seq_analysis_orgdb = org.Mm.eg.db
+atac_seq_analysis_kegg_organism = mmu
+
+
+
+
+
+

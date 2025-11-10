@@ -1,0 +1,40 @@
+########## [data_type]
+single_end = FALSE
+species = mouse
+genome_version = GRCm38
+Nproc = 5
+
+########## [file_configuration]
+result_dir = /home/laojp/data/jinh/
+create_dir_name = 0.raw_data 1.qc 2.trimmomatic 3.qc 4.bwa 5.qc 6.macs 7.homer 8.R
+samplelist_file = /home/laojp/data/jinh/samplelist
+adapter_file = /home/laojp/software/trimmomatic/Trimmomatic-0.39/adapters/NexteraPE-PE.fa
+# according to https://www.biostars.org/p/129436/
+# please read the fastqc html result [adapter content]
+treat_control_pair = /home/laojp/data/jinh/treat_control_pair
+
+########## [reference_file]
+reference_fasta = /home/laojp/database/mouse/ensembl/fasta/GRCm38/ensembl_102/Mus_musculus.GRCm38.dna.primary_assembly.fa
+reference_bwa = /home/laojp/database/mouse/ensembl/fasta/GRCm38/ensembl_102/gatk_grcm38
+blacklist_file = /home/laojp/database/human/ENCODE/blacklist/hg38/hg38-blacklist.v2.bed
+
+########## [software_directory]
+fastqc = /home/laojp/software/fastqc/FastQC
+multiqc = /home/laojp/software/multiqc/bin
+trimmomatic = /home/laojp/software/trimmomatic/Trimmomatic-0.39/dist/jar
+bwa = /home/laojp/software/bwa/bin
+samtools = /home/laojp/software/samtools_1.9/bin
+bamqc = /home/laojp/software/bamqc/BamQC/bin
+gatk =  /home/laojp/software/gatk_4.2.6.1/gatk-4.2.6.1
+deeptools = /home/laojp/software/deeptools/bin
+macs = /home/laojp/software/macs/bin
+facount = /home/laojp/software/faCount
+homer = /home/laojp/software/HOMER/bin
+
+
+
+
+
+
+
+

@@ -1,0 +1,34 @@
+########## data type
+single_end = FALSE
+species = homo_sapiens
+Nproc = 10
+
+########## file configuration
+result_dir = /home/chenjy/chenyx/GC/
+create_dir_name = 0.raw_data 1.qc 2.trimgalore 3.qc 4.bwa 5.markduplicate 6.bqsr 7.haplotypecaller 8.vep
+samplelist_file = /home/chenjy/chenyx/GC/samplelist
+treat_control_pair = /home/chenjy/chenyx/GC/treat_control_pair
+# treat is sample id, control is false, and need to perform separately
+
+########## reference file
+reference_fasta = /home/laojp/database/human/GATK/hg19/ucsc.hg19.fasta
+reference_bwa = /home/laojp/database/human/GATK/hg19/bwa/ucsc
+dbsnp = /home/laojp/database/human/GATK/hg19/dbsnp_138.hg19.vcf
+hapmap = /home/laojp/database/human/GATK/hg19/hapmap_3.3.hg19.vcf
+omni = /home/laojp/database/human/GATK/hg19/1000G_omni2.5.hg19.sites.vcf
+snp_1000G = /home/laojp/database/human/GATK/hg19/1000G_phase1.snps.high_confidence.hg19.sites.vcf
+mill = /home/laojp/database/human/GATK/hg19/Mills_and_1000G_gold_standard.indels.hg19.sites.vcf
+gold_indel = /home/laojp/database/human/GATK/hg19/Mills_and_1000G_gold_standard.indels.hg19.sites.vcf
+vep_env = vep105
+conda_pos = /home/laojp/software/miniconda/
+vep_data = /home/laojp/database/human/ensembl/vep/vep_105/GRCh37
+ncbi_build = GRCh37
+
+########## software directory 
+fastqc = /home/laojp/software/fastqc/FastQC
+multiqc = /home/laojp/software/multiqc/bin
+trimgalore = /home/laojp/software/trimgalore/bin
+samtools = /home/laojp/software/samtools_1.9/bin
+bwa = /home/laojp/software/bwa/bin
+gatk = /home/laojp/software/gatk_4.2.6.1/gatk-4.2.6.1
+vep_path = /home/laojp/software/miniconda/envs/vep105/bin

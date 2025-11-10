@@ -1,0 +1,40 @@
+########## [data_type]
+single_end = TRUE
+species = human
+genome_version = GRCh38
+Nproc = 5
+
+########## [file_configuration]
+result_dir = /home/laojp/data/liaok/merip/
+create_dir_name = 0.raw_data 1.qc 2.trimgalore 3.qc 4.star 5.qc 6.macs 7.homer 8.R
+samplelist_file = /home/laojp/data/liaok/merip/samplelist
+adapter_file = 
+# according to https://www.biostars.org/p/129436/
+# please read the fastqc html result [adapter content]
+treat_control_pair = 
+
+########## [reference_file]
+reference_fasta = /home/laojp/database/human/GATK/hg38/Homo_sapiens_assembly38.fasta
+reference_star = /home/laojp/database/human/STAR/hg38/
+reference_gtf = /home/laojp/database/human/gencode/gtf/v45/gencode.v45.annotation.gtf
+
+########## [software_directory]
+fastqc = /home/laojp/software/fastqc/FastQC
+multiqc = /home/laojp/software/multiqc/bin
+trimgalore = /home/laojp/software/trimgalore/bin
+star = /home/laojp/software/STAR/bin
+samtools = /home/laojp/software/samtools_1.9/bin
+bamqc = /home/laojp/software/bamqc/BamQC/bin
+gatk =  /home/laojp/software/gatk_4.2.6.1/gatk-4.2.6.1
+deeptools = /home/laojp/software/deeptools/bin
+macs = /home/laojp/software/macs/bin
+facount = /home/laojp/software/faCount
+homer = /home/laojp/software/HOMER/bin
+
+
+
+
+
+
+
+

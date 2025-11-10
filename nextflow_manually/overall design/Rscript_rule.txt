@@ -1,0 +1,33 @@
+# about the rule to write r scripts
+# author: laojp
+# time: 2023.09.05
+# position: SYSUCC bioinformatic platform
+
+========== about the overall design of R script ==========
+## necessary package
+for (i in c("packages")) {
+  if (!require(i, character.only = TRUE)) {
+    stop(paste("package: ", i, " is not exits"))
+  }
+}
+
+## the system options
+
+## necessary function list
+function_list <- list()
+function_list[["function_name"]] <- function(parameter){}
+
+## the main part
+# to speed up the running process, use parallel R packages in loop
+# dplyr, tidyverse, stringr to overall change the dataframe
+# optparse to obtain the parameter
+# progress shows the progress of the scripts
+
+========== about the overall design of R script ==========
+
+========== to archive the effect that source by R and Rscript through bash ==========
+# two dir
+# [R function] to store the R function
+# main script: to add the R function position in configuration file
+
+========== to archive the effect that source by R and Rscript through bash ==========

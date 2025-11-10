@@ -1,0 +1,203 @@
+# ----------------------------------------------------------------------------
+# the overall design of the workflow
+# ----------------------------------------------------------------------------
+
+base function1 ------- |
+base function2 ------- |
+base function3 ------- |
+base function4 ------- |
+base function5 ------- |
+                       | module1 ------- |
+base function1 ------- |
+base function2 ------- |
+base function3 ------- |
+base function4 ------- |
+base function5 ------- |
+                       | module2 ------- |
+base function1 ------- |
+base function2 ------- |
+base function3 ------- |
+base function4 ------- |
+base function5 ------- |
+                       | module3 ------- |
+base function1 ------- |
+base function2 ------- |
+base function3 ------- |
+base function4 ------- |
+base function5 ------- |
+                       | module4 ------- |
+                                         | workflow
+
+ps: on a module with any base functions, on a workflow with any modules
+
+# ----------------------------------------------------------------------------
+# the echo of workflow
+# ----------------------------------------------------------------------------
+
+| workflow started in date, [PID] |
+    | module1 started in date |
+        | base function1 started in date, [PID] | ...... done in date
+            | sample1, [PID] ...... done in date
+            | sample2, [PID] ...... done in date
+            | sample3, [PID] ...... done in date
+        | base function2 started in date, [PID] | ...... done in date
+    | module2 started in date, [PID] |
+            | base function1 started in date, [PID] | ...... done in date
+            | sample1, [PID] ...... done in date
+            | sample2, [PID] ...... done in date
+            | sample3, [PID] ...... done in date
+        | base function2 started in date, [PID] | ...... done in date
+    | module3, [PID] started in date |
+        | base function1 started in date, [PID] | ...... done in date
+            | sample1, [PID] ...... done in date
+            | sample2, [PID] ...... done in date
+            | sample3, [PID] ...... done in date
+        | base function2 started in date, [PID] | ...... done in date
+    | module4 started in date, [PID] |
+        | base function1 started in date, [PID] | ...... done in date
+            | sample1, [PID] ...... done in date
+            | sample2, [PID] ...... done in date
+            | sample3, [PID] ...... done in date
+        | base function2 started in date, [PID] | ...... done in date
+| workflow ended in date |
+| total time: time |
+
+ps
+    1. each modules can be ordered or unique
+    2. when occur getting error, then quit all process
+    3. echo each module result to a temp file, when finished, then mapped a module result to a main log
+        3.1. then we should figure out how to momitor all progress and kill all when error occur
+            3.1.1. monitor all process and subprocess [list of progress]
+            3.1.2. when error occur
+            3.1.3. kill all process [kill list of progress]
+            3.1.4. echo error to the module log, and echo all state to the main log
+
+# ----------------------------------------------------------------------------
+# the input order of the base function
+# ----------------------------------------------------------------------------
+
+sample id 
+    [tumor_id] [normal_id] [tumor_normal_id array]
+sample file
+    [input_file] [output_file]
+script function
+sample dir
+    [input_dir] [output_dir] [other_dir]
+suffix
+    [input_prefix] [input_suffix] [output_prefix] [input_suffix]
+other options
+    ordered by the order of base_function source/ module order
+
+# ----------------------------------------------------------------------------
+# the name standard of each variants
+# ----------------------------------------------------------------------------
+
+software
+    [software name] = [software absolute path]
+reference
+    [reference_(reference_name)] = [reference file absolute path]
+version
+    [(type)_version] = [version]
+software_conbfigure
+    [(software)_(configure)] = [absolute path]
+
+# ----------------------------------------------------------------------------
+# to exit all scripts for when any state return non-zero (error)
+# ----------------------------------------------------------------------------
+
+[normal] declear new pid group ---> when run a script running then push a pid into the group 
+[error] use trap to exit all pid of the group
+[foreground] if a scirpt is runned in the foreground, just need to script + process_exit_status
+[background] if a script is runned in the background, just need to script & + process_exit_status + add_pid
+
+
+# ----------------------------------------------------------------------------
+# summary and the process
+# ----------------------------------------------------------------------------
+
+atacseq: reference: From reads to insight a hitchhiker’s guide to ATAC-seq data analysis
+    [workflow]
+        trimmomatic
+        bwa
+        bam_qc: markduplicate filter shift
+        macs2
+        homer
+    [file]
+        atac_seq.sh (finish)
+
+wesseq
+    [workflow]
+        [upstream]
+            merge replicates
+            trimgalore
+            bwa
+            markduplicate
+            bqsr
+        [somatic snv]
+            gatk: mutect2 qc
+            vcf2maf
+        [somatic cnv]
+            cnvkit
+        [germline snv]
+            gatk: haplotypecaller combine genotype VQSR
+            vep
+    [file]
+        wes_somatic_v2.0.sh (finish)
+        wes_germline.sh (finish)
+
+rnaseq
+    [workflow]
+        [upstream]
+            fastp
+            STAR
+        [downstream]
+            featurecount
+            RSEM
+    [file]
+        rnaseq_star_rsem.sh (finish)
+        rnaseq_star_featurecount.sh (finish)
+
+
+# ----------------------------------------------------------------------------
+# summary of omics analysis
+# ----------------------------------------------------------------------------
+wesseq pipeline
+    observed data
+        germline SNV
+        somatic SNV
+        somatic SEG
+    inferred data
+        tumor purity + tumor ploidy
+            [Absolute] somatic SNV + somatic SEG
+            [ESTIMATE]
+        tumor allelic specific copy number
+            [CNVkit] somatic CNV + germline SNV + tumor purity + tumor ploidy
+        tumor CCF
+            [pyclone_vi] somatic SNV + allelic specific copy number + tumor purity
+        adjusted VAF
+        adjusted segment_mean
+        recurrent cytoband + inferred cn + inferred del/amp
+            [gistic2]
+    analysis
+        the landscape of mutation
+        tumor mutation burder
+            - not-syn somatic snv (annotated with vep and asigned with variants effects)
+            - median comparison
+        tumor neoantigen
+        differentially mutated genes
+            - sample frequency differentially between two groups
+            - segment(3kb) sample frequency differentially between two groups
+        clone and neutral evolution
+            - mobster based on neutral evolution theory
+        oncokb annotation
+        oncokb onco_pathway mapping
+            - oncokb annotator
+        significant cytoband
+            - sample frequency differentially between two groups
+        significant mutated gene
+            - musigcv
+        LOH
+        CNA cis and trans effects
+            - multiOmicsViz
+
+
