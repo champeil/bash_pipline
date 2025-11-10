@@ -4,7 +4,7 @@ bash_pipeline使用bash构建DNA_seq、RNA_seq、cuttag_seq(chip-seq, atac-seq)�
 
 # usage
 ## running
-- 下载文件夹，并按照文件层级统一放置于同一文件夹下
+- 下载文件夹
 - 修改workflow主流程代码中，nextflow_manually_dir的路径为该文件夹
 - 在结果目录下构建0.raw_data，并将原始文件放里面，修改文件结尾为\[sample_name\]_\[1\|2\].fq.gz格式
 - 如果是DNA-seq测序，则需要tumor_normal_pair信息，没有表头，制表符分割，第一列为tumor，第二列为normal的sample_name
