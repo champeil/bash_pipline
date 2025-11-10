@@ -17,3 +17,6 @@ bash_pipeline使用bash构建DNA_seq、RNA_seq、cuttag_seq(chip-seq, atac-seq)�
 - 解决方法：出现错误以后，寻找该步骤对应的样本，删除该样本该步骤及之后步骤所有的结果，重新提交sbatch
 - 内存溢出解决方法：调整config中Nproc，降低数目，减少每一步中样本并行数目
 
+# update
+该代码因为学习了nextflow以后，发现很好用，所以不更新了，直接全系移植到nextflow流程，能够将运行时间压缩到原本的十分之一左右
+详情请见：[nextflow_project](https://github.com/champeil/nextflow_project)
