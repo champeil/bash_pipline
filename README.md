@@ -1,2 +1,19 @@
-# pipeline_manual_version
-pipeline_manual_version是一个手动抄袭nextflow又学艺不精（暂时不想学习groovy以及nextflow目前仍旧一知半解）的由一个卑微技术员开发的函数集成式多流程分析
+# bash_pipeline
+bash_pipeline使用bash构建DNA_seq、RNA_seq、cuttag_seq(chip-seq, atac-seq)流程，支持步骤样本并行与sbatch提交。
+与nextflow pipeline相比，缺少断点续分析、按样本独立并行与多sbatch节点分流等……运行速度远慢与nextflow，但是支持代码直接移植、容易上手、支持定制化、并支持单双端测序、tumor-only样本、t-n pair样本的运行，所以具有一定的使用价值
+
+# usage
+## running
+- 下载文件夹，并按照文件层级统一放置于同一文件夹下
+- 修改workflow主流程代码中，nextflow_manually_dir的路径为该文件夹
+- 在结果目录下构建0.raw_data，并将原始文件放里面，修改文件结尾为\[sample_name\]_\[1\|2\].fq.gz格式
+- 如果是DNA-seq测序，则需要tumor_normal_pair信息，没有表头，制表符分割，第一列为tumor，第二列为normal的sample_name
+- 修改config内容
+- sbatch workflow.sh
+  
+## error
+- 该代码因为缺少断点续分析以及重新分析的功能，并且在同一个节点中运行多个样本，所以会容易出现错误
+- 内存溢出：常见于markduplicate
+- 解决方法：出现错误以后，寻找该步骤对应的样本，删除该样本该步骤及之后步骤所有的结果，重新提交sbatch
+- 内存溢出解决方法：调整config中Nproc，降低数目，减少每一步中样本并行数目
+
